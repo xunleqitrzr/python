@@ -1,14 +1,18 @@
 import sys
 import socket
-import os
+import time
 from datetime import datetime
 
-ver = "v3.6"
+ver = "v4.3"
 
 print ("")
-print("╔", "═"*40, "PortScanner", ver, "═"*40, "╗")
-print("║", " "*98, "║")
+time.sleep(0.5)
+print("╔", "═"*40, "PortScanner ", ver, "═"*40, "╗")
+time.sleep(0.5)
+print("║", " "*37, "github.com/xunleqitrzr", " "*37, "║")
+time.sleep(0.5)
 print("╚", "═"*98, "╝")
+time.sleep(0.5)
 
 print("")
 print("Select Type: FTP, SFTP, Webserver, All")
@@ -18,12 +22,12 @@ target = input("Target IP: ") #Ipv4 or domain/text
 targetIP = socket.gethostbyname(target)
 
 if type == "FTP":
-    print("Scan started - PortScanner" + ver)
+    print("Scan started - PortScanner " + ver)
 
     tstart = datetime.now()
 
     try:
-        for p in range(20, 22):
+        for p in range(21, 22):
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             res = sock.connect_ex((targetIP, p))
             if res == 0:
@@ -40,12 +44,12 @@ if type == "FTP":
 #----------------------------------------------------------------
 
 if type == "SFTP":
-    print("Scan started - PortScanner" + ver)
+    print("Scan started - PortScanner " + ver)
 
     tstart = datetime.now()
 
     try:
-        for p in range(21, 23):
+        for p in range(22, 23):
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             res = sock.connect_ex((targetIP, p))
             if res == 0:
@@ -62,12 +66,12 @@ if type == "SFTP":
 #-----------------------------------------------------------------
 
 if type == "WEBSERVER":
-    print("Scan started - PortScanner" + ver)
+    print("Scan started - PortScanner " + ver)
 
     tstart = datetime.now()
 
     try:
-        for p in range(79, 81):
+        for p in range(80, 81):
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             res = sock.connect_ex((targetIP, p))
             if res == 0:
@@ -85,7 +89,7 @@ if type == "WEBSERVER":
 
 if type == "ALL":
 
-    print("Scan started - PortScanner" + ver)
+    print("Scan started - PortScanner " + ver)
 
     tstart = datetime.now()
 
