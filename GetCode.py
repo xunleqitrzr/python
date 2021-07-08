@@ -1,16 +1,26 @@
-import socket
+from tkinter import *
+import tkinter as tk
+import subprocess
 import os
-import time
 
-ts = time.sleep
+root = tk.Tk()
+root.title("Website Code Getter v2.4")
+root.geometry("400x200")
+root.resizable(False, False)
 
-ts(1)
-print("")
-print("="*50, "Website Code Getter v1.5", "="*50)
-ts(1)
-print("Write the website name to get the code!")
-code = input("Website URL: ")
-codeAfter = input("Path to file (/file.fileEnding)[not required]: ")
-print("-"*40, "CODE", "-"*40)
-input(print(code + codeAfter))
-os.system(f"curl {code + codeAfter}")
+labelURL = tk.Label(root, font=("times", 15, "bold"), text="URL + /file.fileEnding [not required]").grid(row=1, column=1)
+entryURL = tk.Entry(root)
+entryURL.place(x=50,y=28, width=250, height=25)
+
+def submit_url():
+	global url
+	url = entryURL.get()
+	writeOut = subprocess.run(['curl', url], stdout=subprocess.PIPE).stdout.decode('utf-8')
+
+	file = open("output.txt", "w")
+	file.write(writeOut)
+	file.close()
+
+submitURL = tk.Button(root, text="Submit", command=submit_url).grid(row=3, column=3)
+
+root.mainloop()
